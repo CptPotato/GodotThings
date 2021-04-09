@@ -1,7 +1,7 @@
 # Smooth Pixel Filtering
 A shader snippet allowing for "smooth pixelated" filtering, eliminating most aliasing artifacts. This **requires** the `Filter` flag of the texture to be set and supports *Mipmapping* and *Anisotropic Filtering*. The effect looks similar to super-sampling but there should be no noticable impact on performance.
 
-*Note: This ~~may~~ does not work on GLES 2*
+*Note: Only the shader using "manual" filtering will work on GLES 2*
 
 ## 2D
 

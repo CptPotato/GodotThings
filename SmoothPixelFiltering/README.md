@@ -1,7 +1,7 @@
 # Smooth Pixel Filtering
 A shader snippet allowing for "smooth pixelated" filtering, eliminating most aliasing artifacts. This **requires** the `Filter` flag of the texture to be set and supports *Mipmapping* and *Anisotropic Filtering*. The effect looks similar to super-sampling but there should be no noticable impact on performance.
 
-*Note: This may not work on GLES 2*
+*Note: This ~~may~~ does not work on GLES 2*
 
 ## 2D
 
@@ -36,7 +36,7 @@ Here's the basic algorithm. The filtering happens automatically and is based on 
 Parameters
 - `smp` texture sampler
 - `uv` texture coordinate
-- `pixel_size` size of one pixel of the texture (1.0f / dimensions)
+- `pixel_size` size of one pixel of the texture (1.0 / dimensions)
 
 ```glsl
 vec4 texturePointSmooth(sampler2D smp, vec2 uv, vec2 pixel_size)
@@ -47,10 +47,10 @@ vec4 texturePointSmooth(sampler2D smp, vec2 uv, vec2 pixel_size)
 	
 	vec2 uv_pixels = uv / pixel_size;
 	
-	vec2 uv_pixels_floor = round(uv_pixels) - vec2(0.5f);
+	vec2 uv_pixels_floor = round(uv_pixels) - vec2(0.5);
 	vec2 uv_dxy_pixels = uv_pixels - uv_pixels_floor;
 	
-	uv_dxy_pixels = clamp((uv_dxy_pixels - vec2(0.5f)) * pixel_size / lxy + vec2(0.5f), 0.0f, 1.0f);
+	uv_dxy_pixels = clamp((uv_dxy_pixels - vec2(0.5)) * pixel_size / lxy + vec2(0.5), 0.0, 1.0);
 	
 	uv = uv_pixels_floor * pixel_size;
 	
